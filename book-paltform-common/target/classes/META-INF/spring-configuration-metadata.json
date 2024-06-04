@@ -1,0 +1,44 @@
+{
+  "groups": [
+    {
+      "name": "books.jwt",
+      "type": "com.books.properties.JwtProperties",
+      "sourceType": "com.books.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "books.jwt.admin-secret-key",
+      "type": "java.lang.String",
+      "description": "管理端员工生成jwt令牌相关配置",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.admin-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.admin-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.user-secret-key",
+      "type": "java.lang.String",
+      "description": "用户端微信用户生成jwt令牌相关配置",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.user-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.user-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.books.properties.JwtProperties"
+    }
+  ],
+  "hints": []
+}
