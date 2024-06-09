@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 public class Teacher {
     Integer id;  //  -主键
     String token;
-
     String name; // -姓名
     String account; //-账户
     String password; //-密码

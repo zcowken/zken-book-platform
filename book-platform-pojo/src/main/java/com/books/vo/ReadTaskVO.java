@@ -21,6 +21,5 @@ public class ReadTaskVO {
     String taskDetail;
     LocalDateTime createTime; // 发布时间
     LocalDateTime deadline;
-
     List<Contribute> contributes; // 相关的阅读的稿件详情
 }

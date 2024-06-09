@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.books.mapper.SchoolMapper">
+
+    <insert id="addSchool" parameterType="com.books.entity.School">
+        insert into school(school_name)
+        values (#{schoolName})
+    </insert>
+    <delete id="deleteSchool" parameterType="com.books.entity.School">
+        delete
+        from school
+        where id = #{id}
+    </delete>
+
+    <update id="updateSchool" parameterType="com.books.entity.School">
+        update school
+        <set>
+            <if test="schoolName != null">school_name = #{schoolName}</if>
+        </set>
+        where id = #{id}
+
+    </update>
+
+
+</mapper>

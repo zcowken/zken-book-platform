@@ -60,9 +60,7 @@ public class UserController {
 
     @PostMapping("/login")
     Result<User> Login(@RequestBody User user) {
-
         log.info("用户登录：{}", user);
-
         User userLogin = userService.login(user); // 此时会把id返还回来
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();

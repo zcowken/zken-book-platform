@@ -62,7 +62,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .description("books项目接口文档")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .groupName("管理端接口")
+                .groupName("教师管理端接口")
                 .apiInfo(apiInfo)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.books.controller.teacher"))
@@ -83,6 +83,23 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .apiInfo(apiInfo)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.books.controller.user"))
+                .paths(PathSelectors.any())
+                .build();
+        return docket;
+    }
+
+    @Bean
+    public Docket docket3() {
+        ApiInfo apiInfo = new ApiInfoBuilder()
+                .title("books项目接口文档")
+                .version("2.0")
+                .description("books项目接口文档")
+                .build();
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("学校端接口")
+                .apiInfo(apiInfo)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.books.controller.school"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
