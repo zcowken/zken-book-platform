@@ -1,6 +1,7 @@
 package com.books.service.Impl;
 
 import com.books.entity.User;
+import com.books.exception.LoginFailedException;
 import com.books.mapper.UserMapper;
 import com.books.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User user) {
         User userRet = userMapper.login(user);
+        if (userRet == null) {
+            throw new LoginFailedException("用户不存在或密码错误");
+        }
         return userRet;
     }
 }

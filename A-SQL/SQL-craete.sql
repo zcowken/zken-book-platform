@@ -36,7 +36,8 @@ CREATE TABLE teacher
     phone           VARCHAR(20) comment '电话号码',
     profile_picture VARCHAR(255) CHARACTER SET utf8mb4 comment '头像',
     create_time     DATETIME comment '账号创建时间',
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    unique (account)
 );
 
 -- 创建学校表
@@ -59,7 +60,9 @@ CREATE TABLE user
     phone           VARCHAR(20) comment '电话号码',
     profile_picture VARCHAR(255) CHARACTER SET utf8mb4 comment '头像',
     create_time     DATETIME comment '账号创建时间',
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    unique (account)
+
 );
 
 -- 创建投稿信息表

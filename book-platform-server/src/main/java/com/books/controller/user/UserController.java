@@ -29,7 +29,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("")
+    @PostMapping("/register")
     Result<String> userRegister(@RequestBody User user) {
         log.info("用户注册");
         userService.register(user);

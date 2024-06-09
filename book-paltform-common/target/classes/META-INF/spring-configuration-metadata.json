@@ -24,6 +24,22 @@
       "sourceType": "com.books.properties.JwtProperties"
     },
     {
+      "name": "books.jwt.teacher-secret-key",
+      "type": "java.lang.String",
+      "description": "教师端口",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.teacher-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.jwt.teacher-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
       "name": "books.jwt.user-secret-key",
       "type": "java.lang.String",
       "description": "用户端微信用户生成jwt令牌相关配置",
