@@ -12,6 +12,11 @@ public interface TeacherMapper {
 
     void updateTeacher(Teacher teacher);
 
+    /**
+     * 此语句执行成功的要求是返回的序列化对象是唯一的
+     * @param teacher
+     * @return
+     */
     Teacher login(Teacher teacher);
 
 }

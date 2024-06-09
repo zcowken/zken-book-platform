@@ -1,8 +1,10 @@
 package com.books.config;
 
 import com.books.interceptor.JwtTokenAdminInterceptor;
+import com.books.interceptor.JwtTokenTeacherInterceptor;
 import com.books.interceptor.JwtTokenUserInterceptor;
 import com.books.json.JacksonObjectMapper;
+import kotlin.text.Regex;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ResourceGroup;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
@@ -32,6 +35,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     private JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
     @Autowired
     private JwtTokenUserInterceptor jwtTokenUserInterceptor;
+    @Autowired
+    private JwtTokenTeacherInterceptor jwtTokenTeacherInterceptor;
 
     /**
      * 注册自定义拦截器
@@ -47,7 +52,13 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
         registry.addInterceptor(jwtTokenUserInterceptor)
                 .addPathPatterns("/user/**")
-                .excludePathPatterns("/user/user/login");
+                .excludePathPatterns("/user/user/login")
+                .excludePathPatterns("/user/user/register");
+
+        registry.addInterceptor(jwtTokenTeacherInterceptor)
+                .addPathPatterns("/teacher/**")
+                .excludePathPatterns("/teacher/teacher/login")
+                .excludePathPatterns("/teacher/teacher/register");
     }
 
     /**

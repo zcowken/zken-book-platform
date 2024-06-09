@@ -28,8 +28,8 @@ public class TeacherController {
      * @param teacher
      * @return
      */
-    @PostMapping("")
-    Result<String> userRegister(@RequestBody Teacher teacher) {
+    @PostMapping("/register")
+    Result<String> teacherRegister(@RequestBody Teacher teacher) {
         log.info("教师注册");
         teacherService.register(teacher);
         return Result.success();
@@ -60,22 +60,22 @@ public class TeacherController {
     @PostMapping("/login")
     Result<Teacher> Login(@RequestBody Teacher teacher) {
         log.info("教师登录：{}", teacher);
-        Teacher userLogin = teacherService.login(teacher); // 此时会把id返还回来
+        Teacher teacherLogin = teacherService.login(teacher); // 此时会把id返还回来
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.USER_ID, userLogin.getId());
+        claims.put(JwtClaimsConstant.TEACHER_ID, teacherLogin.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
 
-        Teacher userReturn = Teacher.builder().id(userLogin.getId())
-                .account(userLogin.getAccount())
-                .password(userLogin.getPassword())
-                .phone(userLogin.getPhone())
+        Teacher teacherReturn = Teacher.builder().id(teacherLogin.getId())
+                .account(teacherLogin.getAccount())
+                .password(teacherLogin.getPassword())
+                .phone(teacherLogin.getPhone())
                 .token(token).build();
 
-        return Result.success(userReturn);
+        return Result.success(teacherReturn);
     }
 
 

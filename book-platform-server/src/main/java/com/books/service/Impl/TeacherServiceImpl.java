@@ -2,6 +2,7 @@ package com.books.service.Impl;
 
 import com.books.entity.Teacher;
 import com.books.entity.Teacher;
+import com.books.exception.LoginFailedException;
 import com.books.mapper.TeacherMapper;
 import com.books.service.TeacherService;
 import org.springframework.beans.BeanUtils;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class TeacherServiceImpl  implements TeacherService {
+public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherMapper teacherMapper;
 
@@ -37,6 +38,9 @@ public class TeacherServiceImpl  implements TeacherService {
     @Override
     public Teacher login(Teacher teacher) {
         Teacher teacherRet = teacherMapper.login(teacher);
+        if (teacherRet == null) {
+            throw new LoginFailedException("用户不存在或密码错误");
+        }
         return teacherRet;
     }
 }
