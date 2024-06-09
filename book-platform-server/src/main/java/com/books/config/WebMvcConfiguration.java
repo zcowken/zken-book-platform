@@ -41,14 +41,13 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("开始注册自定义拦截器...");
-        registry.addInterceptor(jwtTokenAdminInterceptor)
-                .addPathPatterns("/admin/**")
-                .excludePathPatterns("/admin/employee/login");
+//        registry.addInterceptor(jwtTokenAdminInterceptor)
+//                .addPathPatterns("/admin/**")
+//                .excludePathPatterns("/admin/employee/login");
 
         registry.addInterceptor(jwtTokenUserInterceptor)
                 .addPathPatterns("/user/**")
-                .excludePathPatterns("/user/user/login")
-                .excludePathPatterns("/user/shop/status");
+                .excludePathPatterns("/user/user/login");
     }
 
     /**
@@ -66,7 +65,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .groupName("管理端接口")
                 .apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.books.controller.admin"))
+                .apis(RequestHandlerSelectors.basePackage("com.books.controller.teacher"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;

@@ -4,11 +4,31 @@ show databases;
 use books_platform;
 
 show tables;
+drop table teacher;
+drop table school;
+drop table user;
+drop table contribute;
+drop table admiss_contribute;
+drop table solicitation;
+drop table approved_contribute;
+drop table read_tasks;
+drop table recommend;
+drop table books;
+drop table books_contribute;
+drop table solicitation_contribute;
+
+# 修改account唯一
+ALTER TABLE teacher
+    ADD CONSTRAINT unique_constraint_teacher_account UNIQUE (account);
+ALTER TABLE user
+    ADD CONSTRAINT unique_constraint_user_account UNIQUE (account);
+
 
 -- 创建教师表
 CREATE TABLE teacher
 (
-    id              INT,
+    id              INT auto_increment,
+    token           varchar(255) CHARACTER SET utf8mb4 comment 'token',
     name            VARCHAR(50) CHARACTER SET utf8mb4 comment '姓名',
     account         VARCHAR(50) CHARACTER SET utf8mb4 comment '账号',
     password        VARCHAR(50) CHARACTER SET utf8mb4 comment '密码',
@@ -22,7 +42,7 @@ CREATE TABLE teacher
 -- 创建学校表
 CREATE TABLE school
 (
-    id          INT,
+    id          INT auto_increment,
     school_name VARCHAR(50) CHARACTER SET utf8mb4 comment '学校名字',
     PRIMARY KEY (id)
 );
@@ -30,7 +50,8 @@ CREATE TABLE school
 -- 创建用户表s
 CREATE TABLE user
 (
-    id              INT,
+    id              INT auto_increment,
+    token           varchar(255) CHARACTER SET utf8mb4 comment 'token',
     name            VARCHAR(50) CHARACTER SET utf8mb4 comment '姓名',
     account         VARCHAR(50) CHARACTER SET utf8mb4 comment '账号',
     password        VARCHAR(50) CHARACTER SET utf8mb4 comment '密码',
@@ -44,7 +65,7 @@ CREATE TABLE user
 -- 创建投稿信息表
 CREATE TABLE contribute
 (
-    id                 INT comment '投稿ID',
+    id                 INT auto_increment comment '投稿ID',
     title              VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL comment '稿件标题',
     brief_introduction VARCHAR(255) CHARACTER SET utf8mb4 comment '投稿信息简介',
     url                VARCHAR(255) CHARACTER SET utf8mb4 comment '稿件URL',
@@ -59,7 +80,7 @@ CREATE TABLE contribute
 -- 创建通过信件表
 CREATE TABLE admiss_contribute
 (
-    id            INT,
+    id            INT auto_increment,
     contribute_id INT comment '外码投稿id',
     admiss_time   DATETIME comment '通过成为稿件同意时间',
     PRIMARY KEY (id)
@@ -68,13 +89,13 @@ CREATE TABLE admiss_contribute
 -- 创建书目表
 CREATE TABLE books
 (
-    id INT PRIMARY KEY
+    id INT auto_increment PRIMARY KEY
 );
 
 -- 稿件征收表
 CREATE TABLE solicitation
 (
-    id                   INT comment '征收ID',
+    id                   INT auto_increment comment '征收ID',
     teacher_id           INT comment '征收教师ID',
     cover_url            VARCHAR(255) CHARACTER SET utf8mb4 comment '征收封面URL',
     title                VARCHAR(255) CHARACTER SET utf8mb4 comment '征收标题',
@@ -87,7 +108,7 @@ CREATE TABLE solicitation
 -- approved_contribute: 审核关系表
 CREATE TABLE approved_contribute
 (
-    id                     INT PRIMARY KEY comment 'ID',
+    id                     INT auto_increment PRIMARY KEY comment 'ID',
     contribute_id          INT comment '投稿ID',
     teacher_id             INT comment '审核教师ID（外码）',
     review_info            INT comment '审核信息',
@@ -99,7 +120,7 @@ CREATE TABLE approved_contribute
 -- read_tasks: 阅读发布关系表
 CREATE TABLE read_tasks
 (
-    id              INT PRIMARY KEY comment 'ID',
+    id              INT auto_increment PRIMARY KEY comment 'ID',
     books_id        INT comment '书目ID',
     task_title      VARCHAR(255) CHARACTER SET utf8mb4 comment '任务标题',
     task_suggestion VARCHAR(255) CHARACTER SET utf8mb4 comment '任务建议',
@@ -112,6 +133,7 @@ CREATE TABLE read_tasks
 -- recommend: 推荐关系表
 CREATE TABLE recommend
 (
+    id              INT auto_increment PRIMARY KEY,
     teacher_id      INT comment '教师ID',
     contribute_id   INT comment '稿件ID',
     reason          VARCHAR(255) CHARACTER SET utf8mb4 comment '推荐理由',
@@ -121,15 +143,15 @@ CREATE TABLE recommend
 -- books_contribute: 书目关系表
 CREATE TABLE books_contribute
 (
-    id            INT PRIMARY KEY comment 'ID',
+    id            INT auto_increment PRIMARY KEY comment 'ID',
     books_id      VARCHAR(255) CHARACTER SET utf8mb4 comment '外键books的ID',
     contribute_id INT comment '外键contribute的ID'
 );
 
--- Solicitation_contribute: 征收投入稿件关系表（多对多）
-CREATE TABLE Solicitation_contribute
+-- solicitation_contribute: 征收投入稿件关系表（多对多）
+CREATE TABLE solicitation_contribute
 (
-    id              INT PRIMARY KEY comment 'ID',
+    id              INT auto_increment PRIMARY KEY comment 'ID',
     solicitation_id INT comment '外码征收ID',
     contribute_id   INT comment '外键contribute的ID'
 );
