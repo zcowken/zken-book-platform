@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.books.mapper.TeacherMapper">
+
+    <insert id="register" parameterType="com.books.entity.Teacher">
+        INSERT INTO teacher (token, name, account, password, openid, phone, profile_picture, create_time)
+        VALUES (#{token}, #{name}, #{account}, #{password}, #{openid}, #{phone}, #{profilePicture}, #{createTime})
+    </insert>
+
+    <select id="getTeacherById" resultType="com.books.entity.Teacher">
+        select *
+        from teacher
+        where id = #{id};
+    </select>
+    <select id="login" resultType="com.books.entity.Teacher">
+        select *
+        from teacher
+        where password = #{password}
+          and account = #{account}
+    </select>
+
+    <update id="updateTeacher" parameterType="com.books.entity.Teacher">
+        UPDATE teacher
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="account != null">
+                account = #{account},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="openid != null">
+                openid = #{openid},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="profilePicture != null">
+                profile_picture = #{profilePicture},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>
+
+
+
