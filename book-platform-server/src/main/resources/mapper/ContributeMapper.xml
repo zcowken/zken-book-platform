@@ -44,4 +44,10 @@
         </set>
         WHERE id = #{id}
     </update>
+
+    <select id="getById" resultType="com.books.entity.Contribute">
+        select *
+        from contribute
+        where id = #{id}
+    </select>
 </mapper>

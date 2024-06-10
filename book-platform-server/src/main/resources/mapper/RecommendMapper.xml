@@ -8,4 +8,24 @@
         from recommend
         where contribute_id = #{id}
     </select>
+
+    <insert id="insert" parameterType="com.books.entity.Recommend">
+        INSERT INTO recommend
+            (teacher_id, contribute_id, reason, recommend_level)
+        VALUES
+            (#{teacherId}, #{contributeId}, #{reason}, #{recommendLevel})
+    </insert>
+
+    <update id="update" parameterType="com.books.entity.Recommend">
+        UPDATE recommend
+        <set>
+            <if test="teacherId != null">teacher_id = #{teacherId},</if>
+            <if test="contributeId != null">contribute_id = #{contributeId},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="recommendLevel != null">recommend_level = #{recommendLevel},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
 </mapper>

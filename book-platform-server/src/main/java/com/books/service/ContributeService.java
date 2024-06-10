@@ -19,4 +19,6 @@ public interface ContributeService {
      * @param contribute
      */
     void update(Contribute contribute);
+
+    Contribute getById(Integer id);
 }

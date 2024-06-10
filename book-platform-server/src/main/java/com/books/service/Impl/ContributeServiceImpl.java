@@ -99,4 +99,9 @@ public class ContributeServiceImpl implements ContributeService {
         contribute.setUpdateTime(LocalDateTime.now());
         contributeMapper.update(contribute);
     }
+
+    @Override
+    public Contribute getById(Integer id) {
+        return contributeMapper.getById(id);
+    }
 }

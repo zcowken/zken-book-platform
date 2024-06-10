@@ -27,4 +27,15 @@ where id in (select contribute_id
 
 # select * from  recommend where  contribute_id = 1
 
-select * from approved_contribute
+# select * from approved_contribute
+
+
+select contribute.*
+from read_tasks
+         join read_tasks_contribute on
+    read_tasks.id = read_tasks_contribute.read_tasks_id
+         join contribute on read_tasks_contribute.contribute_id = contribute.id
+where read_tasks_id = 1;
+
+
+select * from read_tasks;

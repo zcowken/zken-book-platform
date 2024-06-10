@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.books.mapper.ReadTasksContributeMapper">
+
+
+    <select id="getContributesByReadTaskId" resultType="com.books.entity.Contribute">
+        select contribute.*
+        from read_tasks
+                 join read_tasks_contribute on
+            read_tasks.id = read_tasks_contribute.read_tasks_id
+                 join contribute on read_tasks_contribute.contribute_id = contribute.id
+        where read_tasks_id = #{readTaskId};
+    </select>
+
+    <insert id="insertRelation" parameterType="com.books.entity.ReadTaskContribute">
+        insert into read_tasks_contribute (read_tasks_id, contribute_id)
+        VALUES (#{readTasksId}, #{contributeId})
+    </insert>
+
+    <insert id="insertRelationBatch" parameterType="com.books.entity.ReadTaskContribute">
+        insert into read_tasks_contribute (read_tasks_id, contribute_id) VALUES
+        <foreach collection="readTaskContributeList" item="item" separator=",">
+            (#{item.readTasksId}, #{item.contributeId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByReadTaskId">
+        delete
+        from read_tasks_contribute
+        where read_tasks_id = #{readTaskId}
+    </delete>
+</mapper>

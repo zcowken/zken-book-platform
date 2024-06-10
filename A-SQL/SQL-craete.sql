@@ -11,11 +11,14 @@ drop table contribute;
 drop table admiss_contribute;
 drop table solicitation;
 drop table approved_contribute;
-drop table read_tasks;
 drop table recommend;
+drop table read_tasks;
 drop table books;
 drop table books_contribute;
 drop table solicitation_contribute;
+drop table read_tasks;
+drop table read_tasks_contribute;
+
 
 # 修改account唯一
 ALTER TABLE teacher
@@ -76,7 +79,7 @@ CREATE TABLE contribute
     user_id            INT comment '用户ID',
     picture            VARCHAR(255) CHARACTER SET utf8mb4 comment '封面URL',
     create_time        DATETIME comment '创建时间',
-    update_time         DATETIME comment '更新时间',
+    update_time        DATETIME comment '更新时间',
     PRIMARY KEY (id)
 );
 
@@ -157,4 +160,26 @@ CREATE TABLE solicitation_contribute
     id              INT auto_increment PRIMARY KEY comment 'ID',
     solicitation_id INT comment '外码征收ID',
     contribute_id   INT comment '外键contribute的ID'
+);
+
+
+# 阅读任务实体SQL
+CREATE TABLE read_tasks
+(
+    id             INT auto_increment PRIMARY KEY comment 'ID',
+    teacher_id      INT,
+    task_title      VARCHAR(255) CHARACTER SET utf8mb4 comment '任务标题',
+    task_suggestion VARCHAR(255) CHARACTER SET utf8mb4 comment '任务建议',
+    task_detail     VARCHAR(255) CHARACTER SET utf8mb4 comment '任务详情',
+    create_time     DATETIME comment '发布时间',
+    deadline       DATETIME comment '结束时间'
+);
+
+
+# 阅读任务和稿件的关系表
+CREATE TABLE read_tasks_contribute
+(
+    id            INT auto_increment PRIMARY KEY comment 'ID',
+    read_tasks_id INT,
+    contribute_id INT
 );

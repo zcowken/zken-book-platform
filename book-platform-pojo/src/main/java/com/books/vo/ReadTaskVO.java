@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ReadTaskVO {
     Integer id;
-    Integer booksId;
+    //    Integer booksId; // 暂时不用
     Integer teacherId;
     String taskTitle;
     String taskSuggestion;

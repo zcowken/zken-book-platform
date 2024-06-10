@@ -23,4 +23,6 @@ public interface ContributeMapper {
      * @param contribute
      */
     void update(Contribute contribute);
+
+    Contribute getById(Integer id);
 }

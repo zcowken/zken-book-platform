@@ -1,5 +1,6 @@
-package com.books.controller.user;
+package com.books.controller.teacher;
 
+import com.books.result.Result;
 import com.example.MinIOUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,10 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-import com.books.result.Result;
-
 
 @Slf4j
-@RestController("userCommonController")
-@RequestMapping("/user/common")
+@RestController("teacherCommonController")
+@RequestMapping("/teacher/common")
 public class CommonController {
     @Autowired
     MinIOUtil minIOUtil;
