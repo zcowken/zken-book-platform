@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.books.mapper.ContributeMapper">
+
+
+    <insert id="submit" parameterType="com.books.entity.Contribute">
+        insert into contribute (title, brief_introduction, url, summary, user_id, picture, create_time, updateTime)
+        values (title, brief_introduction, url, summary, user_id, picture, create_time, updateTime);
+    </insert>
+</mapper>
