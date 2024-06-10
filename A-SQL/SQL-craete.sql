@@ -76,7 +76,7 @@ CREATE TABLE contribute
     user_id            INT comment '用户ID',
     picture            VARCHAR(255) CHARACTER SET utf8mb4 comment '封面URL',
     create_time        DATETIME comment '创建时间',
-    updateTime         DATETIME comment '更新时间',
+    update_time         DATETIME comment '更新时间',
     PRIMARY KEY (id)
 );
 

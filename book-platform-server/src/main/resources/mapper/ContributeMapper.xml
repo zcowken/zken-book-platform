@@ -4,7 +4,28 @@
 
 
     <insert id="submit" parameterType="com.books.entity.Contribute">
-        insert into contribute (title, brief_introduction, url, summary, user_id, picture, create_time, updateTime)
-        values (title, brief_introduction, url, summary, user_id, picture, create_time, updateTime);
+        insert into contribute (title, brief_introduction, url, summary, user_id, picture, create_time, update_time)
+        values (#{title}, #{briefIntroduction}, #{url}, #{summary}, #{userId}, #{picture}, #{createTime},
+                #{updateTime});
     </insert>
+
+    <delete id="deleteById" parameterType="com.books.entity.Contribute">
+        delete
+        from contribute
+        where id = #{id}
+    </delete>
+    <select id="pageQuery" resultType="com.books.entity.Contribute">
+        select *
+        from contribute
+        <where>
+            <if test="title != null">title like concat('%', #{title}, '%')</if>
+            <if test="reviewResult != null">
+                id in (select contribute_id
+                from approved_contribute
+                where review_result = #{reviewResult})
+            </if>
+            <if test="recommended != null">id in (select contribute_id from recommend)</if>
+        </where>
+        order by id desc
+    </select>
 </mapper>

@@ -53,7 +53,7 @@ public class UserController {
      */
     @PutMapping("")
     Result<String> updateUser(@RequestBody User user) {
-        log.info("更新用户信息:", user);
+        log.info("更新用户信息:{}", user);
         userService.updateUser(user);
         return Result.success();
     }
@@ -82,7 +82,7 @@ public class UserController {
 
     @PostMapping("/logout")
     Result<String> logout() {
-        log.info("用户退出登录：{}");
+        log.info("用户退出登录：");
         return Result.success();
     }
 }

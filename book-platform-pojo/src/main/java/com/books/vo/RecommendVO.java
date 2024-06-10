@@ -14,6 +14,5 @@ public class RecommendVO {
     Integer contributeId;
     String reason;
     Integer recommendLevel; // 推荐等级
-
     Contribute contribute; // 推荐的稿件
 }
