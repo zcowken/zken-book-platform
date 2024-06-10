@@ -2,11 +2,13 @@ package com.books.controller.user;
 
 
 import com.books.dto.ContributePageRequestDTO;
+import com.books.entity.ApprovedContribute;
 import com.books.entity.Contribute;
 import com.books.result.PageResult;
 import com.books.result.Result;
 import com.books.service.ContributeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.hssf.record.cont.ContinuableRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +32,11 @@ public class ContributeController {
         return Result.success();
     }
 
-
+    /**
+     * 删除稿件
+     * @param contribute
+     * @return
+     */
     @DeleteMapping("/quit")
     Result<String> delete(@RequestBody Contribute contribute) {
         log.info("用户删除稿件：{}", contribute);
@@ -53,6 +59,17 @@ public class ContributeController {
         log.info("查询contribute表中的信息,页码{}，pageSize{}", contributePageRequestDTO.getPage(), contributePageRequestDTO.getPageSize());
         PageResult pageResult = contributeService.pageQuery(contributePageRequestDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 更新稿件内容
+     * @param contribute
+     */
+    @PutMapping("")
+    Result<String> update(@RequestBody Contribute contribute) {
+        log.info("用户更新稿件：{}", contribute);
+        contributeService.update(contribute);
+        return Result.success();
     }
 
 

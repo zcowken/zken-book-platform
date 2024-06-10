@@ -17,4 +17,10 @@ public interface ContributeMapper {
     void deleteById(Integer id);
 
     List<Contribute> pageQuery(ContributePageRequestDTO contributePageRequestDTO);
+
+    /**
+     * 更新稿件内容
+     * @param contribute
+     */
+    void update(Contribute contribute);
 }

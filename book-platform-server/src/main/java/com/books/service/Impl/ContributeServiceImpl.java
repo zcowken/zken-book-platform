@@ -1,6 +1,7 @@
 package com.books.service.Impl;
 
 import com.books.annotation.AutoFill;
+import com.books.constant.ApprovedReviewInfoConstant;
 import com.books.dto.ContributePageRequestDTO;
 import com.books.entity.ApprovedContribute;
 import com.books.entity.Contribute;
@@ -17,6 +18,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -40,11 +42,27 @@ public class ContributeServiceImpl implements ContributeService {
         contribute.setCreateTime(LocalDateTime.now());
         contribute.setUpdateTime(LocalDateTime.now());
         contributeMapper.submit(contribute);
+
+
+        // 添加到待审核列表中
+        ApprovedContribute approvedContribute = new ApprovedContribute();
+        approvedContribute.setContributeId(contribute.getId());
+        // 设置状态为待审核
+        approvedContribute.setReviewInfo(ApprovedReviewInfoConstant.WAIT_TO_APPROVE);
+        // 添加到审核列表
+        approvedContributeMapper.addSubmitContribute(approvedContribute);
     }
 
     @Override
     public void delete(Contribute contribute) {
         contributeMapper.deleteById(contribute.getId());
+        // 不要 删除相关审核列表的记录
+        ApprovedContribute approvedContribute = new ApprovedContribute();
+        approvedContribute.setContributeId(contribute.getId());
+        approvedContribute.setReviewInfo(ApprovedReviewInfoConstant.HAVE_QUIT);
+//        approvedContributeMapper.deleteByContributeId(approvedContribute.getContributeId());
+        // 更新状态 - 更新到reviewInfo = HAVE_QUIT
+        approvedContributeMapper.updateApprovedContributeByInnerContributeId(approvedContribute);
     }
 
     @Override
@@ -69,5 +87,16 @@ public class ContributeServiceImpl implements ContributeService {
 
         PageResult pageResult = new PageResult(contributeVOList.size(), contributeVOList);
         return pageResult;
+    }
+
+    /**
+     * 更新稿件内容
+     * @param contribute
+     */
+    @Transactional
+    @Override
+    public void update(Contribute contribute) {
+        contribute.setUpdateTime(LocalDateTime.now());
+        contributeMapper.update(contribute);
     }
 }

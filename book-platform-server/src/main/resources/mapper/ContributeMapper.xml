@@ -3,7 +3,7 @@
 <mapper namespace="com.books.mapper.ContributeMapper">
 
 
-    <insert id="submit" parameterType="com.books.entity.Contribute">
+    <insert id="submit" parameterType="com.books.entity.Contribute" useGeneratedKeys="true" keyProperty="id">
         insert into contribute (title, brief_introduction, url, summary, user_id, picture, create_time, update_time)
         values (#{title}, #{briefIntroduction}, #{url}, #{summary}, #{userId}, #{picture}, #{createTime},
                 #{updateTime});
@@ -28,4 +28,20 @@
         </where>
         order by id desc
     </select>
+
+
+    <update id="update" parameterType="com.books.entity.Contribute">
+        UPDATE contribute
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="briefIntroduction != null">brief_introduction = #{briefIntroduction},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="summary != null">summary = #{summary},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="picture != null">picture = #{picture},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
 </mapper>

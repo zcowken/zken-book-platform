@@ -18,6 +18,4 @@ public class ApprovedContribute {
     LocalDateTime reviewTime;
     Integer reviewResult;
     String improvementSuggestion;  // 改进建议（无论通过或者未通过都可以有）
-
-
 }

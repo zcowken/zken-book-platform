@@ -13,4 +13,10 @@ public interface ContributeService {
     void delete(Contribute contribute);
 
     PageResult pageQuery(ContributePageRequestDTO contributePageRequestDTO);
+
+    /**
+     * 更新稿件内容
+     * @param contribute
+     */
+    void update(Contribute contribute);
 }
