@@ -14,7 +14,7 @@
         from contribute
         where id = #{id}
     </delete>
-    <select id="pageQuery" resultType="com.books.entity.Contribute">
+    <select id="pageQuery" parameterType="com.books.dto.ContributePageRequestDTO" resultType="com.books.entity.Contribute">
         select *
         from contribute
         <where>
@@ -25,6 +25,7 @@
                 where review_result = #{reviewResult})
             </if>
             <if test="recommended != null">id in (select contribute_id from recommend)</if>
+            <if test="userId != null">id = #{userId}</if>
         </where>
         order by id desc
     </select>

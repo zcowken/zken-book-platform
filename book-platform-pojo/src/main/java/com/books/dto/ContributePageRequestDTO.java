@@ -13,8 +13,9 @@ import lombok.NoArgsConstructor;
 public class ContributePageRequestDTO {
     private Integer reviewResult; // 审核结果 -- review_result
     private Integer recommended; // 推荐等级
-
     private String title; // 稿件名称
+
+    private Integer userId; // 上传者，添加对上传者的指定
 
     //页码
     private int page;
