@@ -2,7 +2,6 @@ package com.books.controller.teacher;
 
 import com.books.dto.ReadTaskDTO;
 import com.books.dto.ReadTaskPageRequestDTO;
-import com.books.entity.ReadTask;
 import com.books.result.PageResult;
 import com.books.result.Result;
 import com.books.service.ReadTasksService;
@@ -34,7 +33,7 @@ public class ReadTasksController {
      * 更新阅读任务
      * @param readTaskDTO
      */
-    @PostMapping("/update")
+    @PutMapping("/update")
     Result<String> modifyReadTask(@RequestBody ReadTaskDTO readTaskDTO) {
         log.info("教师更新阅读任务：{}", readTaskDTO);
         readTasksService.modifyReadTask(readTaskDTO);

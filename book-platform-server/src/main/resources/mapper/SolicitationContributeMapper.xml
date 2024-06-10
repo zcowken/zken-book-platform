@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.books.mapper.SolicitationContributeMapper">
+
+    <insert id="insert" parameterType="com.books.entity.SolicitationContribute">
+        insert into solicitation_contribute (solicitation_id, contribute_id)
+        values (#{solicitationId}, #{contributeId})
+    </insert>
+    <delete id="delete">
+        delete
+        from solicitation_contribute
+        where id = #{id}
+    </delete>
+
+    <update id="update">
+        update solicitation_contribute
+        <set>
+            <if test="contribute_id != null">
+                contribute_id = #{contributeId}
+            </if>
+            <if test="solicitation_id != null">
+                solicitation_id = #{solicitationId}
+            </if>
+        </set>
+    </update>
+
+</mapper>

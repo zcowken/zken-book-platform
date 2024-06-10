@@ -40,4 +40,8 @@ where read_tasks_id = 1;
 
 select * from read_tasks;
 
-insert into  solicitation (teacher_id, cover_url, title, introduction, requirements, solicitation_content)
+# insert into  solicitation (teacher_id, cover_url, title, introduction, requirements, solicitation_content)
+
+# insert into solicitation_contribute ( solicitation_id, contribute_id) values
+
+update solicitation_contribute set contribute_id  = 1, solicitation_id = 2
