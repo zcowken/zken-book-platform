@@ -39,3 +39,5 @@ where read_tasks_id = 1;
 
 
 select * from read_tasks;
+
+insert into  solicitation (teacher_id, cover_url, title, introduction, requirements, solicitation_content)
