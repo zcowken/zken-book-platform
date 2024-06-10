@@ -20,5 +20,20 @@
         where id = #{id}
     </update>
 
+    <select id="getById" resultType="com.books.entity.School">
+        select *
+        from school
+        where id = #{id}
+    </select>
 
+    <select id="pageQuery" parameterType="com.books.dto.SchoolPageRequestDTO" resultType="com.books.entity.School">
+        select *
+        from school
+        <where>
+            <if test="schoolName != null">
+                school_name like concat('%',#{schoolName},'%')
+            </if>
+        </where>
+        order by id desc
+    </select>
 </mapper>

@@ -1,7 +1,9 @@
 package com.books.controller.school;
 
 
+import com.books.dto.SchoolPageRequestDTO;
 import com.books.entity.School;
+import com.books.result.PageResult;
 import com.books.result.Result;
 import com.books.service.SchoolService;
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +44,26 @@ public class SchoolController {
         schoolService.updateSchool(school);
         return Result.success();
     }
+
+
+    @GetMapping("")
+    Result<School> getSchool(Integer id) {
+        log.info("查询了id = {} 的学校", id);
+        School school = schoolService.getSchoolById(id);
+        return Result.success(school);
+    }
+
+
+    /**
+     * 学校分页访问
+     * @param schoolPageRequest
+     * @return
+     */
+    @PostMapping("/page")
+    Result<PageResult> pageQuery(@RequestBody SchoolPageRequestDTO schoolPageRequest) {
+        PageResult pageResult = schoolService.pageQuery(schoolPageRequest);
+        return Result.success(pageResult);
+    }
+
 
 }
