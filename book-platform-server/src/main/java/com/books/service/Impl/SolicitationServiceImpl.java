@@ -2,20 +2,15 @@ package com.books.service.Impl;
 
 import com.books.context.BaseContext;
 import com.books.dto.SolicitationPageRequestDTO;
-import com.books.entity.Contribute;
-import com.books.entity.ReadTask;
 import com.books.entity.Solicitation;
 import com.books.mapper.SolicitationMapper;
 import com.books.result.PageResult;
 import com.books.service.SolicitationService;
-import com.books.vo.ReadTaskVO;
 import com.github.pagehelper.PageHelper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
