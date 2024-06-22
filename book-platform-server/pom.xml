@@ -38,7 +38,10 @@
             <groupId>com.example</groupId>
             <artifactId>zken-minIO-spring-boot-starter</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>zken-minIO-spring-boot-autoconfigure</artifactId>
+        </dependency>
         <!--        redis持久化依赖-->
         <!--        spring缓存-->
         <!--        <dependency>-->

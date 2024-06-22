@@ -21,6 +21,8 @@
         <module>book-paltform-common</module>
         <module>book-platform-pojo</module>
         <module>book-platform-server</module>
+        <module>zken-minIO-spring-boot-starter</module>
+        <module>zken-minIO-spring-boot-autoconfigure</module>
     </modules>
 
     <properties>
@@ -58,6 +60,11 @@
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>zken-minIO-spring-boot-starter</artifactId>
+                <version>${zken.mini.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>zken-minIO-spring-boot-autoconfigure</artifactId>
                 <version>${zken.mini.version}</version>
             </dependency>
 
@@ -133,6 +140,7 @@
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>com.aliyun.oss</groupId>
