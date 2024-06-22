@@ -1,5 +1,6 @@
 package com.books.service;
 
+import com.books.dto.UserLoginDTO;
 import com.books.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -12,4 +13,8 @@ public interface UserService {
     void updateUser(User user);
 
     User login(User user);
+
+    User wxLogin(UserLoginDTO userLoginDTO);
+
+    User getById(Integer userId);
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.books.mapper.UserMapper">
 
-    <insert id="register" parameterType="com.books.entity.User">
+    <insert id="insert" parameterType="com.books.entity.User">
         INSERT INTO user (token, name, account, password, openid, phone, profile_picture, create_time)
         VALUES (#{token}, #{name}, #{account}, #{password}, #{openid}, #{phone}, #{profilePicture}, #{createTime})
     </insert>
