@@ -2,6 +2,7 @@ package com.books.service.Impl;
 
 import com.books.annotation.AutoFill;
 import com.books.constant.ApprovedReviewInfoConstant;
+import com.books.context.BaseContext;
 import com.books.dto.ContributePageRequestDTO;
 import com.books.entity.ApprovedContribute;
 import com.books.entity.Contribute;
@@ -41,6 +42,9 @@ public class ContributeServiceImpl implements ContributeService {
         // 设置时间
         contribute.setCreateTime(LocalDateTime.now());
         contribute.setUpdateTime(LocalDateTime.now());
+
+        // 设置 创作人 为自己
+        contribute.setUserId(BaseContext.getCurrentId().intValue());
         contributeMapper.submit(contribute);
 
 
@@ -67,8 +71,15 @@ public class ContributeServiceImpl implements ContributeService {
 
     @Override
     public PageResult pageQuery(ContributePageRequestDTO contributePageRequestDTO) {
+        // 对访问的判断
+        if (contributePageRequestDTO.getUserId() != null) {
+            contributePageRequestDTO.setUserId(BaseContext.getCurrentId().intValue());
+        }
+
+
         PageHelper.startPage(contributePageRequestDTO.getPage(), contributePageRequestDTO.getPageSize());
         List<Contribute> contributePage = contributeMapper.pageQuery(contributePageRequestDTO);
+        Page<Contribute> p = (Page<Contribute>) contributePage;
         List<ContributeVO> contributeVOList = new ArrayList<>();
         // 补充获取审核和推荐信息
         for (int i = 0; i < contributePage.size(); i++) {
@@ -84,8 +95,7 @@ public class ContributeServiceImpl implements ContributeService {
             // 添加
             contributeVOList.add(contributeVO);
         }
-
-        PageResult pageResult = new PageResult(contributeVOList.size(), contributeVOList);
+        PageResult pageResult = new PageResult(p.getTotal(), contributeVOList);
         return pageResult;
     }
 

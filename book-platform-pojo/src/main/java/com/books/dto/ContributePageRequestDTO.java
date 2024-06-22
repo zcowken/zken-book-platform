@@ -11,8 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ContributePageRequestDTO {
-    private Integer reviewResult; // 审核结果 -- review_result
-    private Integer recommended; // 推荐等级
+    private Integer reviewResult; // 审核结果 -- review_result（通过或者不通过
+    private Integer reviewInfo; // 审核情况（受理或等待中）
+
+    private Integer recommended; // 推荐了吗
     private String title; // 稿件名称
 
     private Integer userId; // 上传者，添加对上传者的指定

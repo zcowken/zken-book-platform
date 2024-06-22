@@ -25,7 +25,7 @@ public class ContributeController {
      * @param contribute
      * @return
      */
-    @PostMapping("")
+    @PostMapping("/submit")
     Result<String> submit(@RequestBody Contribute contribute) {
         log.info("用户上传稿件：{}", contribute);
         contributeService.submit(contribute);

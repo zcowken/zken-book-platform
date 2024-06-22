@@ -14,18 +14,25 @@
         from contribute
         where id = #{id}
     </delete>
-    <select id="pageQuery" parameterType="com.books.dto.ContributePageRequestDTO" resultType="com.books.entity.Contribute">
+
+    <select id="pageQuery" parameterType="com.books.dto.ContributePageRequestDTO"
+            resultType="com.books.entity.Contribute">
         select *
         from contribute
         <where>
             <if test="title != null">title like concat('%', #{title}, '%')</if>
             <if test="reviewResult != null">
-                id in (select contribute_id
+                AND id in (select contribute_id
                 from approved_contribute
                 where review_result = #{reviewResult})
             </if>
-            <if test="recommended != null">id in (select contribute_id from recommend)</if>
-            <if test="userId != null">id = #{userId}</if>
+            <if test="reviewInfo != null ">
+                AND id in (select contribute_id
+                from approved_contribute
+                where review_info = #{reviewInfo})
+            </if>
+            <if test="recommended != null">AND id in (select contribute_id from recommend)</if>
+            <if test="userId != null">AND user_id = #{userId}</if>
         </where>
         order by id desc
     </select>
