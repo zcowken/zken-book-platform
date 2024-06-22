@@ -23,7 +23,8 @@ from contribute
 where id in (select contribute_id
              from approved_contribute
              where review_result = 1)
-  and id in (select contribute_id from recommend);
+  and id in (select contribute_id from recommend)
+  and user_id = 1;
 
 # select * from  recommend where  contribute_id = 1
 
@@ -38,10 +39,23 @@ from read_tasks
 where read_tasks_id = 1;
 
 
-select * from read_tasks;
+select *
+from read_tasks;
 
 # insert into  solicitation (teacher_id, cover_url, title, introduction, requirements, solicitation_content)
 
 # insert into solicitation_contribute ( solicitation_id, contribute_id) values
 
-update solicitation_contribute set contribute_id  = 1, solicitation_id = 2
+update solicitation_contribute
+set contribute_id   = 1,
+    solicitation_id = 2
+
+select contribute_id
+from recommend;
+
+select *
+from contribute
+where title like '%%';
+select *
+from contribute
+where title like concat('%', '', '%');

@@ -4,6 +4,11 @@
       "name": "books.jwt",
       "type": "com.books.properties.JwtProperties",
       "sourceType": "com.books.properties.JwtProperties"
+    },
+    {
+      "name": "books.wechat",
+      "type": "com.books.properties.WeChatProperties",
+      "sourceType": "com.books.properties.WeChatProperties"
     }
   ],
   "properties": [
@@ -21,7 +26,8 @@
     {
       "name": "books.jwt.admin-ttl",
       "type": "java.lang.Long",
-      "sourceType": "com.books.properties.JwtProperties"
+      "sourceType": "com.books.properties.JwtProperties",
+      "defaultValue": 0
     },
     {
       "name": "books.jwt.teacher-secret-key",
@@ -37,7 +43,8 @@
     {
       "name": "books.jwt.teacher-ttl",
       "type": "java.lang.Long",
-      "sourceType": "com.books.properties.JwtProperties"
+      "sourceType": "com.books.properties.JwtProperties",
+      "defaultValue": 0
     },
     {
       "name": "books.jwt.user-secret-key",
@@ -53,7 +60,53 @@
     {
       "name": "books.jwt.user-ttl",
       "type": "java.lang.Long",
-      "sourceType": "com.books.properties.JwtProperties"
+      "sourceType": "com.books.properties.JwtProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "books.wechat.api-v3-key",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.appid",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.mch-serial-no",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.mchid",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.notify-url",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.private-key-file-path",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.refund-notify-url",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
+    },
+    {
+      "name": "books.wechat.we-chat-pay-cert-file-path",
+      "type": "java.lang.String",
+      "sourceType": "com.books.properties.WeChatProperties"
     }
   ],
   "hints": []
